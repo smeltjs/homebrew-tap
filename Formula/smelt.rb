@@ -6,8 +6,8 @@
 class Smelt < Formula
   desc "Structure-aware, reversible context optimization for AI coding agents"
   homepage "https://github.com/smeltjs/smelt"
-  url "https://registry.npmjs.org/@smeltjs/core/-/core-0.5.0.tgz"
-  sha256 "7f837356077bc08373e89a121d6ad6a74f63433a4d9fd645dd8f13cb5f851549"
+  url "https://registry.npmjs.org/@smeltjs/core/-/core-0.6.0.tgz"
+  sha256 "633f5ba53ed679c45a6a6e73d82fdc745e0b0f05b0a10259e487919a007b497d"
   license "Apache-2.0"
 
   # smelt is a Node CLI — one runtime dependency, web-tree-sitter, whose grammars
