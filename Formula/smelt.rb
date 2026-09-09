@@ -6,13 +6,22 @@
 class Smelt < Formula
   desc "Structure-aware, reversible context optimization for AI coding agents"
   homepage "https://github.com/smeltjs/smelt"
-  url "https://registry.npmjs.org/@smeltjs/core/-/core-0.6.0.tgz"
-  sha256 "633f5ba53ed679c45a6a6e73d82fdc745e0b0f05b0a10259e487919a007b497d"
+  url "https://registry.npmjs.org/@smeltjs/core/-/core-0.7.0.tgz"
+  sha256 "b6c4c99bba3d5f3862ea0653f3bfc428754a5d331fe52b654f8c8279f98fd654"
   license "Apache-2.0"
 
   # smelt is a Node CLI — one runtime dependency, web-tree-sitter, whose grammars
-  # ship inside the tarball; no native build, no postinstall download.
-  depends_on "node"
+  # ship inside the tarball; no native build, no postinstall download. node is
+  # :recommended, not required: `--without-node` builds against whatever node is
+  # already on PATH, which must clear the engines floor in packages/core/package.json
+  # (^20.19.0 || >=22.12.0) — and, because Homebrew builds run under superenv, which
+  # resets PATH to the Homebrew prefix bin plus the standard system directories, that
+  # node must live somewhere superenv keeps (e.g. /usr/local/bin or the Homebrew
+  # prefix), not just on a shell profile's PATH — a version-manager shim (nvm, volta,
+  # fnm) is invisible to the build. install below never references Formula["node"]
+  # directly — plain "npm" resolves to Homebrew's node when it is installed, and to
+  # PATH's node otherwise, so both builds share the one code path.
+  depends_on "node" => :recommended
 
   def install
     # The classic npm-tarball install, spelled out: no Homebrew helper methods, so
